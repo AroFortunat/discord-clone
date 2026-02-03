@@ -1,7 +1,15 @@
 import { type Metadata } from "next";
-import { ClerkProvider } from "@clerk/nextjs";
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +37,30 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <header className="flex justify-end items-center p-4 gap-4 h-16"></header>
+          <header className="w-full">
+            <div className="w-full max-w-3/4 flex items-center justify-between mx-auto p-4">
+              <Link href="/">
+                <h3 className="text-2xl font-bold">Discord Clone App</h3>
+              </Link>
+              <div className="flex items-center gap-4">
+                <SignedOut>
+                  <SignInButton>
+                    <button className="border rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
+                      Sign In
+                    </button>
+                  </SignInButton>
+                  <SignUpButton>
+                    <button className="bg-[#6c47ff] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
+                      Sign Up
+                    </button>
+                  </SignUpButton>
+                </SignedOut>
+                <SignedIn>
+                  <UserButton />
+                </SignedIn>
+              </div>
+            </div>
+          </header>
           {children}
         </body>
       </html>
