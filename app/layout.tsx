@@ -12,6 +12,7 @@ import "./globals.css";
 import Link from "next/link";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ModeToggle } from "@/components/mode-toggle";
+import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,7 +38,10 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en"suppressHydrationWarning>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={cn(
+            `${geistSans.variable} ${geistMono.variable} antialiased `,
+            "bg-white dark:bg-[#313338]"
+          )}
         >
           <ThemeProvider
           attribute="class"
