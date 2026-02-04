@@ -10,7 +10,7 @@ services:
       - MARIADB_ROOT_PASSWORD=${DATABASE_ROOT_PASSWORD}
 
     ports:
-      - "3306:3306"
+      - ${DATABASE_PORT}:3306
     restart: always
 
   adminer:
